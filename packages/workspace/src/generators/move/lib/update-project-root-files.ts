@@ -51,7 +51,7 @@ export function updateFilesForRootProjects(
     if (!allowedExt.includes(ext)) {
       continue;
     }
-    if (file === '.eslintrc.json' || file === 'eslint.config.js') {
+    if (file === '.eslintrc.json' || file === 'eslint.config.cjs') {
       continue;
     }
 
@@ -104,7 +104,11 @@ export function updateFilesForNonRootProjects(
     if (!allowedExt.includes(ext)) {
       continue;
     }
-    if (file === '.eslintrc.json' || file === 'eslint.config.js') {
+    if (
+      file === '.eslintrc.json' ||
+      file === 'eslint.config.cjs' ||
+      file === 'eslint.config.js'
+    ) {
       continue;
     }
 

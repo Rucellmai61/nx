@@ -172,9 +172,9 @@ describe('remove-angular-eslint-rules', () => {
 
   describe('flat config', () => {
     it.each(rulesToRemove)('should remove %s rule', async (rule) => {
-      tree.write('eslint.config.js', 'module.exports = [];');
+      tree.write('eslint.config.cjs', 'module.exports = [];');
       tree.write(
-        'apps/app1/eslint.config.js',
+        'apps/app1/eslint.config.cjs',
         `module.exports = [
           {
             files: ['*.ts'],
@@ -186,15 +186,15 @@ describe('remove-angular-eslint-rules', () => {
 
       await migration(tree);
 
-      expect(tree.read('apps/app1/eslint.config.js', 'utf8')).not.toContain(
+      expect(tree.read('apps/app1/eslint.config.cjs', 'utf8')).not.toContain(
         rule
       );
     });
 
     it('should remove multiple rules', async () => {
-      tree.write('eslint.config.js', 'module.exports = [];');
+      tree.write('eslint.config.cjs', 'module.exports = [];');
       tree.write(
-        'apps/app1/eslint.config.js',
+        'apps/app1/eslint.config.cjs',
         `module.exports = [
           {
             files: ['*.ts'],
@@ -210,7 +210,7 @@ describe('remove-angular-eslint-rules', () => {
 
       await migration(tree);
 
-      expect(tree.read('apps/app1/eslint.config.js', 'utf8'))
+      expect(tree.read('apps/app1/eslint.config.cjs', 'utf8'))
         .toMatchInlineSnapshot(`
         "module.exports = [
           {
@@ -224,7 +224,7 @@ describe('remove-angular-eslint-rules', () => {
 
     it('should handle rules set in the root config', async () => {
       tree.write(
-        'eslint.config.js',
+        'eslint.config.cjs',
         `module.exports = [
           {
             files: ['*.ts'],
@@ -238,8 +238,8 @@ describe('remove-angular-eslint-rules', () => {
         `
       );
       tree.write(
-        'apps/app1/eslint.config.js',
-        `const baseConfig = require('../../eslint.config.js');
+        'apps/app1/eslint.config.cjs',
+        `const baseConfig = require('../../eslint.config.cjs');
 
         module.exports = [...baseConfig];
         `
@@ -247,7 +247,7 @@ describe('remove-angular-eslint-rules', () => {
 
       await migration(tree);
 
-      expect(tree.read('eslint.config.js', 'utf8')).toMatchInlineSnapshot(`
+      expect(tree.read('eslint.config.cjs', 'utf8')).toMatchInlineSnapshot(`
         "module.exports = [
           {
             files: ['**/*.ts'],
@@ -256,9 +256,9 @@ describe('remove-angular-eslint-rules', () => {
         ];
         "
       `);
-      expect(tree.read('apps/app1/eslint.config.js', 'utf8'))
+      expect(tree.read('apps/app1/eslint.config.cjs', 'utf8'))
         .toMatchInlineSnapshot(`
-        "const baseConfig = require('../../eslint.config.js');
+        "const baseConfig = require('../../eslint.config.cjs');
 
         module.exports = [...baseConfig];
         "
@@ -267,7 +267,7 @@ describe('remove-angular-eslint-rules', () => {
 
     it('should handle rules set in the root base config', async () => {
       tree.write(
-        'eslint.base.config.js',
+        'eslint.base.config.cjs',
         `module.exports = [
           {
             files: ['*.ts'],
@@ -280,10 +280,10 @@ describe('remove-angular-eslint-rules', () => {
         ];
         `
       );
-      tree.write('eslint.config.js', 'module.exports = [];');
+      tree.write('eslint.config.cjs', 'module.exports = [];');
       tree.write(
-        'apps/app1/eslint.config.js',
-        `const baseConfig = require('../../eslint.base.config.js');
+        'apps/app1/eslint.config.cjs',
+        `const baseConfig = require('../../eslint.base.config.cjs');
 
         module.exports = [...baseConfig];
         `
@@ -291,7 +291,7 @@ describe('remove-angular-eslint-rules', () => {
 
       await migration(tree);
 
-      expect(tree.read('eslint.base.config.js', 'utf8')).toMatchInlineSnapshot(`
+      expect(tree.read('eslint.base.config.cjs', 'utf8')).toMatchInlineSnapshot(`
         "module.exports = [
           {
             files: ['**/*.ts'],
@@ -300,9 +300,9 @@ describe('remove-angular-eslint-rules', () => {
         ];
         "
       `);
-      expect(tree.read('apps/app1/eslint.config.js', 'utf8'))
+      expect(tree.read('apps/app1/eslint.config.cjs', 'utf8'))
         .toMatchInlineSnapshot(`
-        "const baseConfig = require('../../eslint.base.config.js');
+        "const baseConfig = require('../../eslint.base.config.cjs');
 
         module.exports = [...baseConfig];
         "

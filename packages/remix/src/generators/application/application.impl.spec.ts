@@ -443,7 +443,7 @@ describe('Remix Application', () => {
             "jest.config.ts",
             "src/**/*.spec.ts",
             "src/**/*.test.ts",
-            "eslint.config.js",
+            "eslint.config.cjs",
             "eslint.config.cjs",
             "eslint.config.mjs",
           ],

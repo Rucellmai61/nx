@@ -17,5 +17,5 @@
     <%_ if (jsx) { _%>"<%= offsetFromProjectRoot %>**/*.cy.jsx",<%_ } _%>
     "<%= offsetFromProjectRoot %>**/*.d.ts"
   ],
-  "exclude": ["dist"<% if (linter === 'eslint') { %>, "eslint.config.js"<% } %>]
+  "exclude": ["dist"<% if (linter === 'eslint') { %>, "eslint.config.js", "eslint.config.cjs", "eslint.config.mjs"<% } %>]
 }

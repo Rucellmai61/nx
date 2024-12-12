@@ -53,7 +53,7 @@ describe('@nx/eslint:lint-project', () => {
       skipFormat: true,
     });
 
-    expect(tree.read('eslint.config.js', 'utf-8')).toMatchInlineSnapshot(`
+    expect(tree.read('eslint.config.cjs', 'utf-8')).toMatchInlineSnapshot(`
       "const nx = require("@nx/eslint-plugin");
 
       module.exports = [

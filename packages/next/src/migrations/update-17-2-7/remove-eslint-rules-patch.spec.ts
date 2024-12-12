@@ -92,15 +92,15 @@ describe('update-nx-next-dependency', () => {
   });
 
   it('should remove @next/next/no-html-link-for-pages in flat configs', async () => {
-    tree.write('eslint.config.js', 'module.exports = []');
+    tree.write('eslint.config.cjs', 'module.exports = []');
 
     addProjectConfiguration(tree, 'my-pkg', {
       root: 'packages/my-pkg',
     });
     tree.write(
-      `packages/my-pkg/eslint.config.js`,
+      `packages/my-pkg/eslint.config.cjs`,
       `const { FlatCompat } = require('@eslint/eslintrc');
-    const baseConfig = require('../../eslint.config.js');
+    const baseConfig = require('../../eslint.config.cjs');
     const js = require('@eslint/js');
 
     const compat = new FlatCompat({
@@ -145,7 +145,7 @@ describe('update-nx-next-dependency', () => {
     await update(tree);
 
     expect(
-      tree.read(`packages/my-pkg/eslint.config.js`, 'utf-8')
+      tree.read(`packages/my-pkg/eslint.config.cjs`, 'utf-8')
     ).not.toContain("'@next/next/no-html-link-for-pages': 'off'");
   });
 });

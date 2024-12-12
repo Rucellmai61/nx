@@ -35,8 +35,8 @@ export default async function (tree: Tree) {
   }
 
   /**
-   * We need to handle both a root config file (e.g. eslint.config.js) and a
-   * potential base config file (e.g. eslint.base.config.js). We can't use
+   * We need to handle both a root config file (e.g. eslint.config.cjs) and a
+   * potential base config file (e.g. eslint.base.config.cjs). We can't use
    * `findEslintFile` because it would return only one or the other depending
    * on whether a root is provided and the existence of the files. So, we
    * handle each of them separately.

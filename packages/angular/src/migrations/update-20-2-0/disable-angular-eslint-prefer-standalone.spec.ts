@@ -241,9 +241,9 @@ describe('disable-angular-eslint-prefer-standalone', () => {
 
   describe('flat config', () => {
     it('should not disable @angular-eslint/prefer-standalone when it is set', async () => {
-      tree.write('eslint.config.js', 'module.exports = [];');
+      tree.write('eslint.config.cjs', 'module.exports = [];');
       tree.write(
-        'apps/app1/eslint.config.js',
+        'apps/app1/eslint.config.cjs',
         `module.exports = [
           {
             files: ['*.ts'],
@@ -255,7 +255,7 @@ describe('disable-angular-eslint-prefer-standalone', () => {
 
       await migration(tree);
 
-      expect(tree.read('apps/app1/eslint.config.js', 'utf8'))
+      expect(tree.read('apps/app1/eslint.config.cjs', 'utf8'))
         .toMatchInlineSnapshot(`
         "module.exports = [
           {
@@ -268,9 +268,9 @@ describe('disable-angular-eslint-prefer-standalone', () => {
     });
 
     it('should not disable @angular-eslint/prefer-standalone when there are multiple overrides for angular eslint and the rule is set in one of them', async () => {
-      tree.write('eslint.config.js', 'module.exports = [];');
+      tree.write('eslint.config.cjs', 'module.exports = [];');
       tree.write(
-        'apps/app1/eslint.config.js',
+        'apps/app1/eslint.config.cjs',
         `module.exports = [
           {
             files: ['*.ts'],
@@ -291,7 +291,7 @@ describe('disable-angular-eslint-prefer-standalone', () => {
 
       await migration(tree);
 
-      expect(tree.read('apps/app1/eslint.config.js', 'utf8'))
+      expect(tree.read('apps/app1/eslint.config.cjs', 'utf8'))
         .toMatchInlineSnapshot(`
         "module.exports = [
           {
@@ -313,9 +313,9 @@ describe('disable-angular-eslint-prefer-standalone', () => {
     });
 
     it('should disable @angular-eslint/prefer-standalone in an existing override for angular eslint', async () => {
-      tree.write('eslint.config.js', 'module.exports = [];');
+      tree.write('eslint.config.cjs', 'module.exports = [];');
       tree.write(
-        'apps/app1/eslint.config.js',
+        'apps/app1/eslint.config.cjs',
         `module.exports = [
           {
             files: ['*.ts'],
@@ -336,7 +336,7 @@ describe('disable-angular-eslint-prefer-standalone', () => {
 
       await migration(tree);
 
-      expect(tree.read('apps/app1/eslint.config.js', 'utf8'))
+      expect(tree.read('apps/app1/eslint.config.cjs', 'utf8'))
         .toMatchInlineSnapshot(`
         "module.exports = [
           {
@@ -363,9 +363,9 @@ describe('disable-angular-eslint-prefer-standalone', () => {
     });
 
     it('should disable @angular-eslint/prefer-standalone in an existing override for ts files', async () => {
-      tree.write('eslint.config.js', 'module.exports = [];');
+      tree.write('eslint.config.cjs', 'module.exports = [];');
       tree.write(
-        'apps/app1/eslint.config.js',
+        'apps/app1/eslint.config.cjs',
         `module.exports = [
           {
             files: ['*.ts'],
@@ -377,7 +377,7 @@ describe('disable-angular-eslint-prefer-standalone', () => {
 
       await migration(tree);
 
-      expect(tree.read('apps/app1/eslint.config.js', 'utf8'))
+      expect(tree.read('apps/app1/eslint.config.cjs', 'utf8'))
         .toMatchInlineSnapshot(`
         "module.exports = [
           {
@@ -393,9 +393,9 @@ describe('disable-angular-eslint-prefer-standalone', () => {
     });
 
     it('should disable @angular-eslint/prefer-standalone in a new override', async () => {
-      tree.write('eslint.config.js', 'module.exports = [];');
+      tree.write('eslint.config.cjs', 'module.exports = [];');
       tree.write(
-        'apps/app1/eslint.config.js',
+        'apps/app1/eslint.config.cjs',
         `module.exports = [
           {
             files: ['*.html'],
@@ -407,7 +407,7 @@ describe('disable-angular-eslint-prefer-standalone', () => {
 
       await migration(tree);
 
-      expect(tree.read('apps/app1/eslint.config.js', 'utf8'))
+      expect(tree.read('apps/app1/eslint.config.cjs', 'utf8'))
         .toMatchInlineSnapshot(`
         "module.exports = [
           {
